@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Ticket</title>
+</head>
+<body>
+    <center>
+
+<h2>PNR STATUS</h2>
+<p>CHARTS/VACANCY</p>
+<p>INDIAN</p>
+<p>Safety | S</p>
+
+<h2>BOOK TICKET</h2>
+<form action="/submit-ticket" method="post">
+    <label for="departureDate">Departure Date:</label>
+    <input type="date" id="departureDate" name="departureDate" required><br><br>
+
+    <label for="from">From:</label>
+    <input type="text" id="from" name="from" required><br><br>
+
+    <label for="to">To:</label>
+    <input type="text" id="to" name="to" required><br><br>
+
+    <label for="class">Class:</label>
+    <select id="class" name="class">
+        <option value="general">General</option>
+      <option value="disabilityConcession">option>Person With Disability Concession</option>
+        <option value="trainWithBerth">Train with Available Berth</option>
+        <option value="railwayPass">Railway Pass Concession</option>
+        <option value="ICF">ICF</option>
+    </select><br><br>
+
+    <input type="checkbox" id="flexibleDate" name="flexibleDate">
+    <label for="flexibleDate">Flexible With Date</label><br><br> 
+
+
+    <input type="checkbox" id="vandeBharat" name="vandeBharat">
+    <label for="vandeBharat">Person With Disability Concession</label><br><br>
+
+    <input type="checkbox" id="vandeBharat" name="vandeBharat">
+    <label for="vandeBharat">Train with Available Berth</label><br><br>
+
+    <input type="checkbox" id="vandeBharat" name="vandeBharat">
+    <label for="vandeBharat">Railway Pass Concession</label><br><br>
+
+
+
+    <input type="submit" value="Search">
+</form>
+</center>
+
+</body>
+</html>
