@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-login</title>
+    <script>
+        function mainhidden(){
+            let div=document.getElementById("page2");
+            let div1=document.getElementById("page1");
+            div.style.visibility="visible";
+            div1.style.opacity = 0.35;
+        }
+
+        function mainvisible(){
+            let div2=document.getElementById("page2");
+            let div3=document.getElementById("page1");
+            div2.style.visibility="hidden";
+            div3.style.opacity=1;
+        }
+    
+    </script>
+    
+    <style>
+        *{
+            background-color: #f5f5f5;
+        }
+        .main{
+            display:flex;
+            justify-content: space-evenly;
+        }
+        .fb-logo{
+            margin-top: 200px;
+            width:500px;
+        }
+        img{
+
+            height:110px;
+            width:390px;
+        }
+        h2{
+            margin-left:15px;
+            width:500px;
+            font-family:sans-serif;
+            font-size:1.5rem ;
+            font-weight:500;
+            color:#333;
+        }
+        .login{
+            
+            margin-top: 150px;
+            background-color:#fff;
+            border: 1px solid #fff;
+            height: 280px;
+            width:340px;
+            padding:15px;
+            border-radius:8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+        input[type=email ], [type=password]{
+            height:32px;
+            width:94%;
+            border: 0.25px solid #ccc;
+            border-radius: 3px;
+            padding: 5px;
+            font-size: 16px;
+            color:#333;
+            background-color: transparent;
+        }
+        button{
+            height:38px;
+            width:320px;
+            border:none;
+            border-radius: 5px;
+            background-color: rgb(7, 110, 255);
+            color:#fff ;
+            font-size: 18px;
+            padding: 5px;
+        }
+        a{
+            text-align: center;
+        }
+        .b2{
+            background-color: rgb(19, 191, 71);
+            width:254px;
+            height: 40px;
+            font-size: 17px;
+
+        }
+       .Sign-up{
+        margin-top: 30px;
+            align-items: center;
+            border-radius: 10px;
+            padding:15px;
+            background-color:#fff;
+            width:350px;
+            height: 450px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+       }
+       
+       .sign-b1 .input [type=text]{
+            border:none;
+            padding:3px;
+            height: 20px;
+       }
+       p{
+        font-size: 10px;
+        font-family:Arial, Helvetica, sans-serif;
+       }
+       h3{
+        font-family: Arial, Helvetica, sans-serif;
+       }
+       .signtext{
+        font-size: 15px;
+        background-color: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+       }
+       #page2 {
+            z-index: 1002;
+          
+            visibility: hidden;
+       }
+       
+       
+    </style>
+</head>
+<body>
+        <div id="page1" class="main">
+            <div class="fb-logo">
+                
+                    <img src="	https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg">
+                <h2>Facebook helps you connect and share with the people in your life.</h2>
+
+            </div>
+            <div class="login">
+                <input type="email" placeholder="Email">
+                <br><br>
+                <input type="password" placeholder="Password"><br><br>
+                <button>Log in</button><br><br>
+                <center><a  href="#" >Forgotten password ?</a><br></center>
+                <hr>
+                <br>
+                <center><button class="b2" onclick="mainhidden()">Create Account</button></center>
+            </div>
+        </div>
+        <center>
+        <div id="page2" class="Sign-up">
+            <div class="centerdiv">
+                <h2 style="background-color: transparent;">Sign Up</h2>
+                <div class="signtext">It's quick and easy</div>
+                <hr>
+                <div class="sign-b1">
+                    <input type="text" placeholder="First name">
+                    <input type="text" placeholder="Surname">
+                </div>
+                <div class="sign-b2">
+                    <input type="email" placeholder="Mobile number or email address">
+                    <input type="password" placeholder="New Password">
+                    
+                </div>
+                <div class="sign-b3">
+                    
+                    <h3>Gender</h3>
+                    Female<input type="radio" id="gender" required>
+                    Male<input type="radio" id="gender" required>
+                    Custom<input type="radio" id="gender" required>
+                    
+                </div>
+                <p>People who use our service may have uploaded your contact information to Facebook. <a href="#">Learn more</a>.
+                </p>
+                <P>By clicking Sign Up, you agree to our <a href="#">Terms</a>,<a href="#"> Privacy Policy </a>and <a href="#">Cookies Policy.</a> You may receive SMS notifications from us and can opt out at any time.</P>
+                <button onclick="mainvisible()">Sign Up</button>
+            </div>
+        </div>
+        </center>
+    
+</body>
+</html>
