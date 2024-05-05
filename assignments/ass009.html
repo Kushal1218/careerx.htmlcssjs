@@ -1,52 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        function fnc(){
-            for(let i=0;i<5;i++){
-                let num1=Math.round(Math.random()*10);
-                let num2=Math.round(Math.random()*10);
-                
-
-                addRandom.innerHTML=`${num1} +${num2} =  `;
-                
-                
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: 'Mukta', sans-serif;
+        
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 605px;
+            min-width: 200px;
+            height:auto;
+            margin: auto;
+            background-color: #fbf6be;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+        
+        .head{
+            display: inline-flex;
+            height: auto;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+        }
+        .head h1{
+            font-size: 2rem;
+            color: #fff;
+            background-color: #333;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 25px 5px 25px 5px;
+        }
+        .head h3{
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: #333;
+            font-weight: 400;
+        }
+        
+        .note{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-self: start;
+            flex-direction: column;
+            /* width: 100%; */
+            height: 150px;
+            color: #000;
+            font-size:.6rem;
+            font-weight: 400;
+            border-radius: 5px;
+            margin: 10px 5px;
+        }
+        
+        .opt-box{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 250px;
+            height: 60px;
+        }
+        
+        .opt-box p input[type="radio"]{
+            border: 3px solid #c3324c;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            color: #c3324c;
+            background-color: #000;
+            /* opacity: 0; */
+        }
+        .opt-box p label{
+            font-size: 1rem;
+            color:#c3324c;
+            font-weight: 400;
+            cursor: pointer;
+            margin: 10px 0;
+        
+        }
+        
+        .new span{
+            color: #000;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 10px;
+        }
+        .new{
+            color: #333;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 400;
+            margin: 10px;
+        }
+        
+        .notes{
+            display: inline-flex;
+            justify-content: space-around;
+            width: 100%;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .head button{
+            width: 200px;
+            height: 50px;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid brown;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s ease-out;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .head button:hover{
+            font-weight: 700;
+            width: 150px;
+            color: #fff;
+            background: #333;
+            border: transparent;
+            border-radius: 25px;
+            padding: 5px;
+            transform: scale(1.1);
+        }
+        
+        #start.hide{
+        display: none;
+        }
+        
+        .ans-body{
+            display: none;
+        }
+        
+        .ans-body.show{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            width: 100%;
+            position: relative;
+            /* animation: slide 1s ease; */
+        }
+        
+        .ans-body .score{
+            position: absolute;
+            top: -20px;
+            right: 45px;
+            text-align: center;
+            color: green;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 10px;
+        }
+        
+        #restart{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: red;
+            color: yellow;
+            border: 2px solid yellow;
+            padding: 8px 10px;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        
+        .ans-body .ans-box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 50%;
+        }
+        
+        .ans-box input{
+            width: 300px;
+            height: 50px;
+            font-size: 1rem;
+            text-align: center;
+            padding: 10px 20px;
+            border: 2px solid brown;
+            background-color: beige;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.8s ease-out;
+            margin: 10px;
+        }
+        
+        .ans-box input:focus{
+            border: 3px solid green;
+            background-color: #fff;
+        }
+        
+        .ans-body .display{
+            text-align: center;
+            color: steelblue;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .ans-body .display2{
+            text-align: center;
+            color: red;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 10px;
+        }
+        
+        .ans-box button{
+            width: 250px;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px;
+            border: 2px solid brown;
+            background-color: chocolate;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .ans-box button:focus{
+            border: 3px solid green;
+            background-color: #fff;
+            color: green;
+        }
+        .btn-box{
+            width: 400px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .btn-box button{
+            width: 300px;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px;
+            border: 2px solid brown;
+            background-color: chocolate;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
+        }
+        
+        
+        .btn-box button:hover{
+            font-weight: 700;
+            animation: none;
+            border-radius: 25px;
+            transform: scale(1.1);
+            width: 150px;
+        }
+        
+        .btn-box button:focus{
+            border: 3px solid green;
+            background-color: #fff;
+            color: green;
+        }
+        
+        #next, #prev{
+            background-color: yellow;
+            color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+        }
+        
+        button:hover{
+            transform: scale(1.1);
+        }
+        @keyframes slide {
+            0%{
+                transform: translateX(-200%);
+            }
+            100%{
+                transform: translateX(0%);
             }
         }
-        function fnc1(){
-            let x =Math.round(Math.random()*10);
-            let y=Math.round(Math.random()*10);
-
-            // const add=x+y;
-            // random.innerHTML=`${num1} +${num2} = ${add}`;
-
-            // const sub=x-y;
-            // random.innerHTML=`${num1} -${num2} = ${sub}`;
-
-            const mul=x*y;
-            random.innerHTML=`${num1} *${num2} = ${mul}`;
-
-            // const div=x/y;
-            // random.innerHTML=`${num1} /${num2} = ${div}`;
-
+        @keyframes displaySlide {
+            0%{
+                transform: translateY(-500%);
+                opacity: 0;
+            }
+            100%{
+                transform: translateY(0%);
+                opacity: 1;
+            }  
         }
-    </script>
-</head>
-<body>
-    <div>
-        <button onclick="fnc()"> Quiz Addition of two random</button>
+        @keyframes show {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+            
+        }
+        @keyframes pop{
+            0%{
+                transform: scale(0);
+                opacity: 0;
+            }
+            100%{
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes popout {
+            from{transform:scale(0)}
+            80%{transform:scale(1.2)}
+            to{transform:scale(1)}
+        }
+        @media only screen and (max-width: 680px){
+            .container{
+                width: 100%;
+                /* margin-top: 50px; */
+            }
+            .head h1{
+                font-size: 1.5rem;
+            }
+            .btn-box button{
+                width:20%;
+            }
+            .ans-body .ans-box input{
+                width: 80%;
+            }
+            .ans-box button{
+                width: 80%;
+            }
+            .ans-body .display2{
+                margin-top: 20px;
+            }
+        }
+        
+        .hide{
+            display: none;
+        }
+        </style>
+    <title>Quiz</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="head">
+        <h1>Welcome to the QUIZ!!</h1>
+        <h3> - - Select Mode - - </h3>
+        <div class="opt-box" id="opt-box">
+          <p>
+            <input
+              type="radio"
+              name="nums"
+              id="easy"
+              value="0-10"
+              checked/>
+              <label for="easy">Easy Mode</label>
+          </p>
+          <p>
+            <input type="radio" name="nums" id="hard" value="0-20" /><label
+              for="hard"
+              >Hard Mode</label
+            >
+          </p>
+        </div>
+        <div class="notes" id="notes">
+           <p class="note hide">
+              Rules:
+              <br />
+              1. You win 1 point for each correct answer. <br />
+              2. Quiz ends when you answer 5 Questions correct. <br />
+              3. You can restart the quiz , anytime during the game. <br />
+              4. You can skip the question by clicking on next button. <br />
+              5. If anything is divided by 0, answer is ' udefined ' <br>
+              6. If division is not exact, answer is ' rounded to 2 decimal places ' <br>
+            </p>
+         </div>
+            <button type="button" id="start" class="btn-start">Start Quiz</button>
+      </div>
+      <div class="ans-body">
+        <div class="score" id="score">Score: <label>0</label></div>
+        <button type="button" id="restart" class="btn">
+          <span class="material-symbols-outlined"> replay </span>
+        </button>
+        <p id="incorrect-display" class="display2"></p>
+        <p id="display" class="display">Question Here</p>
+        <div class="ans-box">
+          <input autofocus type="text" id="answer" placeholder="Answer Here" />
+          <button type="button" id="btn-ans">Submit</button>
+        </div>
+        <div class="btn-box">
+          <button type="button" id="next" class="btn hide">Next</button>
+        </div>
+      </div>
+    </div>
+    <script>const signup = document.getElementById('signup');
 
-        <label id="addRandom"></label>
-    </div>
-    <br>
-    <br>
-    <div>
-        <button onclick="fnc1()">Advance Calculations</button>
-        <label id="random"></label>
-    </div>
-    
-</body>
+        const page1 = document.querySelector('.container-login');
+        
+        const page2 = document.querySelector('.container-sign-up');
+        
+        const login = document.getElementById('login');
+        
+        const mail = document.getElementById('email');
+        
+        const pwd = document.getElementById('password');
+        
+        const form = document.querySelector('.righty .top');
+        
+        const welcome = document.querySelector('.righty .welcome-box');
+        
+        const submit = document.getElementById('submit');
+        
+        const display = document.getElementById('display');
+        
+        signup.addEventListener("click", () => {
+            page1.classList.add('hide');
+            page2.classList.add('show');
+        });
+        
+        login.addEventListener("click", () => {
+            page1.classList.remove('hide');
+            page2.classList.remove('show');
+        });
+        
+        submit.addEventListener("click", (e) => {
+            e.preventDefault();
+            if(mail.value === "john@gmail.com" && pwd.value ==="1234"){
+                form.classList.add('hide');
+                welcome.classList.add('welcome');
+                display.innerHTML = "Welcome John";
+            } else{
+                form.classList.add('hide');
+                welcome.classList.add('welcome');
+                display.style.color = "red";
+                display.innerHTML = ("Access Denied!, Invalid email or password");
+            }
+        });
+        </script>
+  </body>
 </html>
